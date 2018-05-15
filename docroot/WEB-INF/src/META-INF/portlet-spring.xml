@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="br.com.seatecnologia.test.todolist.service.TaskLocalService" class="br.com.seatecnologia.test.todolist.service.impl.TaskLocalServiceImpl" />
+	<bean id="br.com.seatecnologia.test.todolist.service.TaskService" class="br.com.seatecnologia.test.todolist.service.impl.TaskServiceImpl" />
+	<bean id="br.com.seatecnologia.test.todolist.service.persistence.TaskPersistence" class="br.com.seatecnologia.test.todolist.service.persistence.TaskPersistenceImpl" parent="basePersistence" />
+	<bean id="br.com.seatecnologia.test.todolist.service.TaskListLocalService" class="br.com.seatecnologia.test.todolist.service.impl.TaskListLocalServiceImpl" />
+	<bean id="br.com.seatecnologia.test.todolist.service.TaskListService" class="br.com.seatecnologia.test.todolist.service.impl.TaskListServiceImpl" />
+	<bean id="br.com.seatecnologia.test.todolist.service.persistence.TaskListPersistence" class="br.com.seatecnologia.test.todolist.service.persistence.TaskListPersistenceImpl" parent="basePersistence" />
+</beans>
