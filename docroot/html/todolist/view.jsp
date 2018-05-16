@@ -2,6 +2,7 @@
 
 <%
 	long taskListId = Long.valueOf((Long) renderRequest.getAttribute("taskListId"));
+	DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 %>
 
 <aui:nav cssClass="nav-tabs">
@@ -67,14 +68,16 @@
 		className="Task" modelVar="task">
 		
 		<portlet:actionURL name="toggleDone" var="doneURL">
-			<portlet:param name="taskId" value="<%= String.valueOf(task.getTaskId()) %>"/>
+			<portlet:param name="taskId" value="<%= String.valueOf(task.getTaskId()) %>" />
 			<portlet:param name="taskListId" value="<%= String.valueOf(task.getTaskListId()) %>"/>
 		</portlet:actionURL>
-		<liferay-ui:search-container-column-text name="Done">
-			<a href="<%= doneURL.toString() %>"><%= task.getDone() ? "Undone" : "Done" %></a>
+		
+		<liferay-ui:search-container-column-text name="Done" align="right" width="10">
+			<liferay-ui:icon image='<%= task.getDone() ? "checked" : "unchecked" %>'
+				url="<%= doneURL.toString() %>" />
 		</liferay-ui:search-container-column-text>
 		<liferay-ui:search-container-column-text property="description" name="Task" />
-		<liferay-ui:search-container-column-date property="dueDate" name="Due Date" />
+		<liferay-ui:search-container-column-text name="Due Date" value="<%= dateFormat.format(task.getDueDate()) %>"/>
 		<liferay-ui:search-container-column-jsp path="/html/todolist/task_list_actions.jsp" align="right" />
 	</liferay-ui:search-container-row>
 	

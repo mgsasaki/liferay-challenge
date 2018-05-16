@@ -22,7 +22,7 @@
 	<aui:model-context bean="<%= task %>" model="<%= Task.class %>" />
 	
 	<aui:fieldset>
-		<aui:input name="description" />
+		<aui:input name="description" inlineLabel="left" />
 		<aui:input name="dueDate" />
         <aui:input name="taskId" type="hidden" />
 		<aui:input name='taskListId' type='hidden' 

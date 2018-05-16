@@ -2,6 +2,7 @@ package br.com.seatecnologia.test.todolist.portlet;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -52,10 +53,11 @@ public class ToDoListPortlet extends MVCPortlet {
 			throws PortalException, SystemException{
 		
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(Task.class.getName(), request);
-		DateFormat dateFormat = DateFormat.getInstance();
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		
 		String taskDescription = ParamUtil.getString(request, "description");
 		Date taskDueDate = ParamUtil.getDate(request, "dueDate", dateFormat);
+		System.out.println(taskDueDate.toString());
 		
 		long taskListId = ParamUtil.getLong(request, "taskListId");
 		long taskId = ParamUtil.getLong(request, "taskId");
