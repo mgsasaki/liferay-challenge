@@ -113,6 +113,30 @@ public class ToDoListPortlet extends MVCPortlet {
 			SessionErrors.add(request, e.getClass().getName());
 		}
 	}
+	
+	public void toggleDone(ActionRequest request, ActionResponse response) {
+		
+		long taskListId = ParamUtil.getLong(request, "taskListId");
+		long taskId = ParamUtil.getLong(request, "taskId");
+		
+
+		try {
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(Task.class.getName(), request);
+			Task task = TaskLocalServiceUtil.getTask(taskId);
+			 			
+			TaskLocalServiceUtil.updateTask(serviceContext.getUserId(), taskListId, taskId, 
+					task.getDescription(), task.getDueDate(), (!task.getDone()), serviceContext);
+			
+			SessionMessages.add(request, "entryModified");
+			
+			response.setRenderParameter("taskListId", Long.toString(taskListId));
+			response.setRenderParameter("mvcPath", "/html/todolist/view.jsp");
+		}
+		catch (Exception e) {
+			SessionErrors.add(request, e.getClass().getName());
+		}
+
+	}
 
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse) 

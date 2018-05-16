@@ -64,8 +64,15 @@
 				searchContainer.getEnd()) %>" />
 				
 	<liferay-ui:search-container-row
-		className="br.com.seatecnologia.test.todolist.model.Task" modelVar="task">
+		className="Task" modelVar="task">
 		
+		<portlet:actionURL name="toggleDone" var="doneURL">
+			<portlet:param name="taskId" value="<%= String.valueOf(task.getTaskId()) %>"/>
+			<portlet:param name="taskListId" value="<%= String.valueOf(task.getTaskListId()) %>"/>
+		</portlet:actionURL>
+		<liferay-ui:search-container-column-text name="Done">
+			<a href="<%= doneURL.toString() %>"><%= task.getDone() ? "Undone" : "Done" %></a>
+		</liferay-ui:search-container-column-text>
 		<liferay-ui:search-container-column-text property="description" name="Task" />
 		<liferay-ui:search-container-column-date property="dueDate" name="Due Date" />
 		<liferay-ui:search-container-column-jsp path="/html/todolist/task_list_actions.jsp" align="right" />
